@@ -46,15 +46,6 @@ struct GameView : View {
         )
     }
     
-    var gestureEnabled: Bool {
-        // Existed for future usage.
-#if !os(iOS)
-        return false
-#else
-        return true
-#endif
-    }
-    
     var gesture: some Gesture {
         let threshold: CGFloat = 44
         let drag = DragGesture()
@@ -94,9 +85,9 @@ struct GameView : View {
         GeometryReader { proxy in
             bind(self.layoutTraits(for: proxy)) { layoutTraits in
                 ZStack(alignment: layoutTraits.containerAlignment) {
-                    Text("2048")
+                    Text("3264")
                         .font(Font.system(size: 48).weight(.black))
-                        .color(Color(red:0.47, green:0.43, blue:0.40, opacity:1.00))
+                        .foregroundColor(Color(red:0.47, green:0.43, blue:0.40, opacity:1.00))
                         .offset(layoutTraits.bannerOffset)
                     
                     ZStack(alignment: .center) {
@@ -115,10 +106,7 @@ struct GameView : View {
     }
     
     var body: AnyView {
-        return gestureEnabled ? (
-            content
-                .gesture(gesture, including: .all)>*
-        ) : content>*
+        return content.gesture(gesture, including: .all)>*
     }
     
 }

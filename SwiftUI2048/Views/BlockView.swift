@@ -97,11 +97,11 @@ struct BlockView : View {
 
             Text(numberText)
                 .font(Font.system(size: fontSize).bold())
-                .color(colorPair.1)
+                .foregroundColor(colorPair.1)
                 .id(textId!)
                 // ⚠️ Gotcha: `zIndex` is important for removal transition!!
                 .zIndex(1000)
-                .transition(AnyTransition.opacity.combined(with: .scale()))
+                .transition(AnyTransition.opacity.combined(with: .scale))
         }
         .clipped()
         .cornerRadius(6)
@@ -112,19 +112,19 @@ struct BlockView : View {
 // MARK: - Previews
 
 #if DEBUG
-struct BlockView_Previews : PreviewProvider {
-    
-    static var previews: some View {
-        Group {
-            ForEach((1...11).map { Int(pow(2, Double($0))) }) { i in
-                BlockView(block: IdentifiedBlock(id: 0, number: i))
-                    .previewLayout(.sizeThatFits)
-            }
-            
-            BlockView.blank()
-                .previewLayout(.sizeThatFits)
-        }
-    }
-    
-}
+//struct BlockView_Previews : PreviewProvider {
+//
+//    static var previews: some View {
+//        Group {
+//            ForEach((1...11).map { Int(pow(2, Double($0))) }) { i in
+//                BlockView(block: IdentifiedBlock(id: 0, number: i))
+//                    .previewLayout(.sizeThatFits)
+//            }
+//
+//            BlockView.blank()
+//                .previewLayout(.sizeThatFits)
+//        }
+//    }
+//
+//}
 #endif

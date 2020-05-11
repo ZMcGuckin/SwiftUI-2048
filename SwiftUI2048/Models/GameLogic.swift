@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-final class GameLogic : BindableObject {
+final class GameLogic : ObservableObject {
     
     enum Direction {
         case left

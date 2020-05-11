@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AnchoredScale : ViewModifier {
     
-    let scaleFactor: Length
+    let scaleFactor: CGFloat
     let anchor: UnitPoint
     
     func body(content: Self.Content) -> some View {
@@ -21,7 +21,7 @@ struct AnchoredScale : ViewModifier {
 
 struct BlurEffect : ViewModifier {
     
-    let blurRaduis: Length
+    let blurRaduis: CGFloat
     
     func body(content: Self.Content) -> some View {
         content.blur(radius: blurRaduis)
@@ -71,7 +71,7 @@ struct BlockGridView : View {
     
     typealias SupportingMatrix = BlockMatrix<IdentifiedBlock>
     
-    let matrix: Self.SupportingMatrix
+    let matrix: SupportingMatrix
     let blockEnterEdge: Edge
     
     func createBlock(_ block: IdentifiedBlock?,
@@ -121,11 +121,11 @@ struct BlockGridView : View {
             .zIndex(1)
             
             // Number blocks:
-            ForEach(self.matrix.flatten.identified(by: \.item.id)) {
+            ForEach(matrix.flatten, id: \.item.id) {
                 self.createBlock($0.item, at: $0.index)
             }
             .zIndex(1000)
-            .animation(.fluidSpring(stiffness: 130, dampingFraction: 0.8))
+            .animation(.spring())
         }
         .frame(width: 320, height: 320, alignment: .center)
         .background(
