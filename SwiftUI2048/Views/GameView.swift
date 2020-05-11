@@ -85,7 +85,7 @@ struct GameView : View {
         GeometryReader { proxy in
             bind(self.layoutTraits(for: proxy)) { layoutTraits in
                 ZStack(alignment: layoutTraits.containerAlignment) {
-                    Text("3264")
+                    Text("2048")
                         .font(Font.system(size: 48).weight(.black))
                         .foregroundColor(Color(red:0.47, green:0.43, blue:0.40, opacity:1.00))
                         .offset(layoutTraits.bannerOffset)
